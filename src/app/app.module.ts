@@ -11,6 +11,21 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import {AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { HttpModule } from '@angular/http';
+
+
+export const fireConfig={
+    apiKey: "AIzaSyAwMK6rpyj96sZCOe-5tU-U1an3LkJRhjY",
+    authDomain: "pikachu-de7a5.firebaseapp.com",
+    databaseURL: "https://pikachu-de7a5.firebaseio.com",
+    projectId: "pikachu-de7a5",
+    storageBucket: "pikachu-de7a5.appspot.com",
+    messagingSenderId: "658782825561"
+
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +36,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(fireConfig), 
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,6 +53,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
